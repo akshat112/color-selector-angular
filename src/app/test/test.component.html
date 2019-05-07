@@ -1,0 +1,36 @@
+<div class="container text-center p-5" [style.backgroundColor]="bgColor" style="border-radius: 10px;">
+  <div style="text-align:center">
+    <h1 class="text-light">
+      WittyFeed Angular!
+    </h1>
+  </div>
+  <hr>
+  <div class="row" [ngClass]="bgColor=='#cfd8dc' || bgColor=='#ffeb3b' ? 'row text-dark':'row text-light'">
+    <div class="col-md-6">
+      <b>Choose background color:</b>
+      <select [(ngModel)]="bgColor" class="form-control">
+        <option value="#1e88e5">Blue</option>
+        <option value="#ef5350">Red</option>
+        <option value="#ffeb3b">Yellow</option>
+        <option value="#9c27b0">Purple</option>
+        <option value="#009688">Green</option>
+        <option value="#cfd8dc">Light</option>
+      </select>
+    </div>
+    <div class="col-md-6">
+      <b>Enter a color:</b> <input type="text" [(ngModel)]="colorName" class="form-control">
+      <h4 [style.color]="colorName" *ngIf="validateColor(colorName); else start">You entered {{colorName}} color</h4>
+    </div>
+  </div>
+  <h4 class="text-light">List of available colors</h4>
+  <div>
+    <div class="row">
+      <div class="col-md-3" *ngFor="let color of validColors">
+          <h4 [style.backgroundColor]="color" style="border-radius: 5px; cursor: pointer;" class="p-2 m-1" (click)="colorClick(color)">{{color}}</h4>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #start>
+  <h4>Enter a valid color</h4>
+</ng-template>
